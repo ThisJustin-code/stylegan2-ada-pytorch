@@ -1,12 +1,8 @@
 import sys
 sys.path.insert(0, "./")
-import pickle
 import os
 import numpy as np
 import PIL.Image
-from IPython.display import Image
-import matplotlib.pyplot as plt
-import IPython.display
 import torch
 import dnnlib
 import legacy
