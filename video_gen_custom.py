@@ -92,7 +92,8 @@ for i in range(len(seed_list) - 1):
         img = generate_image(device, G, current)
         img.save(os.path.join(temp, f'frame-{idx}.png'))
         idx += 1
-    print(f'Completed seed {seed_list[i]}')
+        
+    print(f'Completed walk between seeds {seed_list[i]} and {seed_list[i+1]}')
 
 print('Image generation complete...')
 print('Begin video processing...')
