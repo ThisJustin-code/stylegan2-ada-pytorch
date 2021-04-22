@@ -1,3 +1,15 @@
+## Current editions to this repository
+
+* **image_gen_custom.py**: My attempt at a custom script that poorly mimics the functionality of `generate.py`
+* **video_gen_custom.py**: This custom script that allows you to generate video of the transition of the latent vector between multiple seeds.
+
+If anyone is actually interested in using either of these scripts, then it is assumed you have installed the necessary components according to the `README.md` from the original [StyleGAN2-ADA - Official PyTorch implementation](https://github.com/NVlabs/stylegan2-ada-pytorch) (also see below). If using Anaconda then a few `conda` or `pip` installs may be necessary for libraries not included with the installation and configuration of stylegan2-ada-pytorch (I recommend just running the custom scripts and using the error output as reference for what to install, slow but it works).
+
+Professor [Jeff Heaton's](https://github.com/jeffheaton) online videos were a huge help in understanding how to use and implement code for stylegan2-ada-pytorch. Also thanks to Nvidia's researchers for this creation (cited below).
+
+
+Last updated by **Justin Gallagher**.
+  
 ## StyleGAN2-ADA &mdash; Official PyTorch implementation
 
 ![Teaser image](./docs/stylegan2-ada-teaser-1024x252.png)
