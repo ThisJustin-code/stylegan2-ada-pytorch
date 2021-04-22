@@ -1,4 +1,4 @@
-## Current editions to this repository
+## Current additions to this repository
 
 * **image_gen_custom.py**: My attempt at a custom script that poorly mimics the functionality of `generate.py`
 * **video_gen_custom.py**: This custom script that allows you to generate video of the transition of the latent vector between multiple seeds.
