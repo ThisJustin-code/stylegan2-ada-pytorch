@@ -7,7 +7,7 @@ import torch
 import dnnlib
 import legacy
 
-def seed2vec(G, seed):
+def seed_to_vector(G, seed):
     return np.random.RandomState(seed).randn(1, G.z_dim)
 
 def generate_image(G, z, truncation_psi):
@@ -22,7 +22,7 @@ def generate_image(G, z, truncation_psi):
     images = G.run(z, label, **G_kwargs)
     return images[0]
 
-def get_label(G, device, class_idx):
+def grab_label(G, device, class_idx):
     label = torch.zeros([1, G.c_dim], device=device)
     if G.c_dim != 0:
         if class_idx is None:
@@ -35,7 +35,7 @@ def get_label(G, device, class_idx):
 
 def generate_image(device, G, z, truncation_psi=1.0, noise_mode='const', class_idx=None):
     z = torch.from_numpy(z).to(device)
-    label = get_label(G, device, class_idx)
+    label = grab_label(G, device, class_idx)
     img = G(z, label, truncation_psi=truncation_psi, noise_mode=noise_mode)
     img = (img.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
     return PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB')
@@ -58,7 +58,7 @@ if user == 'r':
     seed_to = input('Seed to: ')
 
     for i in range(int(seed_from), int(seed_to)):
-      z = seed2vec(G, i)
+      z = seed_to_vector(G, i)
       img = generate_image(device, G, z)
       img.save(os.path.join(save_path, f'{i}.png'))
       print(f"Generated Seed {i}")
@@ -72,7 +72,7 @@ elif user == 'l':
         seed_list.append(seed)
 
     for i in range(len(seed_list)):
-      z = seed2vec(G, seed_list[i])
+      z = seed_to_vector(G, seed_list[i])
       img = generate_image(device, G, z)
       img.save(os.path.join(save_path, f'{seed_list[i]}.png'))
       print(f"Generated Seed {seed_list[i]}")
