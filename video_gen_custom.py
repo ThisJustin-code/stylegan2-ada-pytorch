@@ -54,6 +54,7 @@ def expand_seed(seeds, vector_size):
 print("\nLATENT VECTOR WALK VIDEO GENERATOR made by JUSTIN GALLAGHER")
 print("DO NOT INCLUDE QUOTATIONS IN ANY FILE OR DIRECTORY PATH NAMES!\n")
 pkl_file = input('What is the .pkl file path: ')
+save_path = input('Save video to which directory: ')
 
 print(f'Loading networks from "{pkl_file}"...')
 device = torch.device('cuda')
@@ -71,7 +72,6 @@ for i in range(0, seed_num):
     seed_list.append(seed)
 
 steps = int(input("Number of steps between seeds: "))
-save_path = input('Save video to which directory: ')
 
 print('Creating temp directory for images...')
 temp = os.path.join(save_path, "temp-images")
