@@ -98,7 +98,14 @@ for i in range(len(seed_list) - 1):
 print('Image generation complete...')
 print('Begin video processing...')
 
-ffmpeg_cmd = 'ffmpeg -r 30 -i '+os.path.join(temp,'frame-%d.png')+' -vcodec mpeg4 -y '+os.path.join(save_path, "movie.mp4")+''
+
+padding = input('Pad video? ("y" or "n"): ')
+ffmpeg_cmd = ''
+if padding == 'y':
+    ffmpeg_cmd = 'ffmpeg -r 30 -i '+os.path.join(temp,'frame-%d.png')+' -vf "scale=512:512:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,setsar=1" -vcodec mpeg4 -y '+os.path.join(save_path, "movie.mp4")+''
+else:
+    ffmpeg_cmd = 'ffmpeg -r 30 -i '+os.path.join(temp,'frame-%d.png')+' -vcodec mpeg4 -y '+os.path.join(save_path, "movie.mp4")+''
+print(ffmpeg_cmd)
 os.system(ffmpeg_cmd)
 
 print("Removing all temporary files...")
